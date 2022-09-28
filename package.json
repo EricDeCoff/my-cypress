@@ -1,0 +1,26 @@
+{
+  "name": "my-cypress",
+  "version": "1.0.0",
+  "description": "My Cypress Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cy-clean": "npm run cy-clean-reports && npm run cy-clean-screenshots && npm run cy-clean-videos",
+    "cy-clean-reports": "if exist cypress\\reports rmdir /s/q cypress\\reports && mkdir cypress\\reports && mkdir cypress\\reports\\mocha && mkdir cypress\\reports\\mochareports",
+    "cy-clean-screenshots": "if exist cypress\\screenshots rmdir /s/q cypress\\screenshots && mkdir cypress\\screenshots",
+    "cy-report": "npm run cy-combine-reports && npm run cy-generate-report || exit 0",
+    "cy-clean-videos": "if exist cypress\\videos rmdir /s/q cypress\\videos && mkdir cypress\\videos",
+    "cy-combine-reports": "mochawesome-merge cypress/reports/mocha/*.json > cypress/reports/mochareports/report.json",
+    "cy-generate-report": "marge cypress/reports/mochareports/report.json -f report -o cypress/reports/mochareports -- inline"
+  },
+  "author": "Eric DeCoff",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^10.9.0",
+    "cypress-localstorage-commands": "^2.2.1",
+    "cypress-multi-reporters": "^1.6.1",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.2.1",
+    "mochawesome-report-generator": "^6.2.0"
+  }
+}
